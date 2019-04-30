@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<p class="lead">
+  <h2 id="response"></h2>
+  Please wait
+</p>
+<script>
+  console.log(window.location.search)
+  if (window.location.search != null) {
+    window.opener.postMessage(window.location.search, 'http://localhost:4200/login');
+    window.close();
+  }
+  window.addEventListener("message", getMessage, false);
+
+  function getMessage(e) {
+    var content = '';
+    // e.data 接受傳遞訊息
+    content += "Get Message =>" + e.data + '<br>';
+    // e.origin 接受訊息domain
+    content += "Url from " + e.origin;
+    document.getElementById("response").innerHTML = "<p>" + content + "</p>";
+  };
+</script>
+
+</html>
